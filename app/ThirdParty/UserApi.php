@@ -28,6 +28,17 @@ final class UserApi
         }
     }
 
+    public function get(string $userId): array
+    {
+        try {
+            $response = $this->client->get("users/$userId");
+            $body = json_decode($response->getBody());
+            return $this->parseResult($body);
+        } catch (Exception $e) {
+            return ['error' => $e->getMessage()];
+        }
+    }
+
     private function parseResult(object $item): array
     {
         return [
