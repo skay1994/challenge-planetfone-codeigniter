@@ -1,63 +1,70 @@
-# CodeIgniter 4 Application Starter
+# Desafio Planetfone
 
-## What is CodeIgniter?
+Objetivo:
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](http://codeigniter.com).
+Consumir 5 usuários da API https://jsonplaceholder.typicode.com/ e listar todos em ordem alfabética.
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+Requisitos:
+- PHP
+- HTML
+- JAVASCRIPT
+- CSS
 
-More information about the plans for version 4 can be found in [the announcement](http://forum.codeigniter.com/thread-62615.html) on the forums.
+Diferenciais e análise: 
+- Estrutura do projeto, código organizado, comentado e limpo.
+- Uso de alguma biblioteca frontend (React, Vue.js e etc).
+- Uso de alguma biblioteca backend (Codeigniter, Zend e etc).
 
-The user guide corresponding to this version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+Regras:
+- É obrigatório que seu backend seja em PHP ou em NodeJS
+- O seu frontend não deve consumir a API diretamente. Você deve obter os dados pelo seu backend, tratá-los e fornecê-los para seu front consumir.
+- Exibir apenas os seguintes campos na tela:
+  - id
+  - name
+  - username
+  - email
+- Documentar a instalação do projeto em um readme.md e publicá-lo em sua conta do Github.
+- Não há prazo definido para entregar o desafio, mas as correções serão feitas por ordem de recebimento.
 
-## Installation & updates
+# Detalhes para uso do sistema
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+### Docker
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+Imagem docker diponivel, use o comando abaixo:
+```sh 
+docker compose up server -d
+```
 
-## Setup
+Ou com [DDEV](https://ddev.readthedocs.io/en/stable/users/install/ddev-installation/)
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+```sh
+ddev start
+```
 
-## Important Change with index.php
+# Documentação
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+### Backend
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+Listar Todos os usuarios:
+- **Metodo:** GET
+- **URI:** /api/users
+  - query params
+    - limit int (default = 5)
+- Corpo
+  - Array com  Arrays:
+    - id
+    - name
+    - email
+    - username
 
-**Please** read the user guide for a better explanation of how CI4 works!
-
-## Repository Management
-
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
-
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
-
-## Server Requirements
-
-PHP version 7.4 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php)
-- xml (enabled by default - don't turn it off)
+Recuperar usuario unico
+- **Metodo:** GET
+- **URI:** /api/users/{:id}
+  - url params
+    - ID int
+- Corpo
+  - Array:
+    - id
+    - name
+    - email
+    - username
