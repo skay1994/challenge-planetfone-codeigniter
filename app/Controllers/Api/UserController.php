@@ -20,4 +20,9 @@ class UserController extends BaseController
         $limit = $this->request->getGet('limit') ?? 5;
         return $this->response->setJSON($this->api->getAll($limit));
     }
+
+    public function show(string $userId): ResponseInterface
+    {
+        return $this->response->setJSON($this->api->get($userId));
+    }
 }
